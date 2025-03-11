@@ -44,7 +44,7 @@ export default class cartePreHistoire extends Phaser.Scene {
   
       calque_plateformes.setCollisionByProperty({ estSolide2: true });
   
-      this.player = this.physics.add.sprite(50, 50, "img_perso");
+      this.player = this.physics.add.sprite(768, 50, "img_perso");
       this.player.setBounce(0.1);3..
       this.player.setCollideWorldBounds(true);
       this.player.body.onWorldBounds = true;
