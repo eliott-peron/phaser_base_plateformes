@@ -1,8 +1,8 @@
-export default class carteDesert extends Phaser.Scene {
+export default class cartePreHistoire extends Phaser.Scene {
     // constructeur de la classe
     constructor() {
       super({
-        key: "carteDesert" //  ici on précise le nom de la classe en tant qu'identifiant
+        key: "cartePreHistoire" //  ici on précise le nom de la classe en tant qu'identifiant
       });
     }
   
@@ -14,10 +14,11 @@ export default class carteDesert extends Phaser.Scene {
       
   
   
-      this.load.image("Phaser_tuilesdejeu", "src/assets/tuilesJeu.png");
-      this.load.image("Phaser_tuilesdejeu2", "src/assets/tuilesJeu2.png");
-      this.load.image("Phaser_tuilesdejeu3", "src/assets/tuilesJeu3.png");
-      this.load.tilemapTiledJSON("carte", "src/assets/map.json");
+      this.load.image("phaser_prehistoire", "src/assets/Example_1.png");
+      this.load.image("phaser_prehistoire2", "src/assets/Example_2.png");
+      this.load.tilemapTiledJSON("prehistoire", "src/assets/Préhistoire.json");
+    
+
     }
   
   
@@ -31,20 +32,20 @@ export default class carteDesert extends Phaser.Scene {
   
      
   
-      const carteDuNiveau = this.add.tilemap("carte");
-      const tileset = carteDuNiveau.addTilesetImage("tuiles_de_jeu", "Phaser_tuilesdejeu");
-      const tileset2 = carteDuNiveau.addTilesetImage("tuiles_de_jeu2", "Phaser_tuilesdejeu2");
-      const tileset3 = carteDuNiveau.addTilesetImage("tuiles_de_jeu3", "Phaser_tuilesdejeu3");
+      const carteDuNiveau = this.add.tilemap("prehistoire");
+      const tileset = carteDuNiveau.addTilesetImage("prehistoire", "phaser_prehistoire");
+      const tileset2 = carteDuNiveau.addTilesetImage("prehistoire2", "phaser_prehistoire2");
+
+
+
   
-      const calque_background = carteDuNiveau.createLayer("calque_background", [tileset, tileset2, tileset3]);
-      const calque_background_2 = carteDuNiveau.createLayer("calque_background_2", [tileset, tileset2, tileset3]);
-      const calque_background_3 = carteDuNiveau.createLayer("Tile Layer 3", [tileset, tileset2, tileset3]);
-      const calque_plateformes = carteDuNiveau.createLayer("calque_plateformes", [tileset, tileset2, tileset3]);
+      const calque_background = carteDuNiveau.createLayer("calque_fond", [tileset, tileset2, ]);
+      const calque_plateformes = carteDuNiveau.createLayer("calque_solide", [tileset, tileset2, ]);
   
-      calque_plateformes.setCollisionByProperty({ estSolide: true });
+      calque_plateformes.setCollisionByProperty({ estSolide2: true });
   
-      this.player = this.physics.add.sprite(100, 450, "img_perso");
-      this.player.setBounce(0.1);
+      this.player = this.physics.add.sprite(50, 50, "img_perso");
+      this.player.setBounce(0.1);3..
       this.player.setCollideWorldBounds(true);
       this.player.body.onWorldBounds = true;
       this.player.body.world.on(
@@ -104,4 +105,27 @@ export default class carteDesert extends Phaser.Scene {
         repeat: -1
       });
     }
-}
+  
+    update() {
+      if (this.clavier.left.isDown) {
+        this.player.setVelocityX(-300);
+        this.player.anims.play("anim_tourne_gauche", true);
+      } else if (this.clavier.right.isDown) {
+        this.player.setVelocityX(300);
+        this.player.anims.play("anim_tourne_droite", true);
+      } else {
+        this.player.setVelocityX(0);
+        this.player.anims.play("anim_face");
+      }
+  
+      if (this.clavier.up.isDown && this.player.body.blocked.down) {
+        this.player.setVelocityY(-330);
+      }
+  
+     
+      
+  
+    }
+  
+  };
+  

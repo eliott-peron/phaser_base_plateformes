@@ -1,5 +1,7 @@
 import aceuille from "/src/js/aceuille.js"; 
 import selection from "/src/js/selection.js";
+import cartePreHistoire from "/src/js/cartePreHistoire.js";
+
 
 
  
@@ -22,7 +24,7 @@ var config = {
       debug:true // permet de voir les hitbox et les vecteurs d'acceleration quand mis à true
     }
   },
-  scene: [aceuille ,selection ] 
+  scene: [aceuille ,selection , cartePreHistoire] 
 };
 
 // création et lancement du jeu
