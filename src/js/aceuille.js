@@ -7,6 +7,9 @@ export default class MenuScene extends Phaser.Scene {
         this.load.image("menu_background", "src/assets/imageaccueil.png");
         this.load.image("play_button", "src/assets/boutonplay.png");
         this.load.image("regles_button", "src/assets/boutonregles (1).png");
+        this.load.image("menu_background", "src/assets/imageaccueil.png");
+        this.load.image("play_button", "src/assets/boutonplay.png");
+        this.load.image("regles_button", "src/assets/boutonregles (1).png");
     }
 
     create() {
@@ -21,6 +24,8 @@ export default class MenuScene extends Phaser.Scene {
         
 
         // Ajout du bouton Play avec animation
+        let playButton = this.add.image(this.cameras.main.width / 2, 480, "play_button").setInteractive();
+        playButton.setScale(0.8);
         let playButton = this.add.image(this.cameras.main.width / 2, 480, "play_button").setInteractive();
         playButton.setScale(0.8);
 

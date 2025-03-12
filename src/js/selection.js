@@ -14,7 +14,6 @@ var backmuse;
 
 
 
-
 export default class selection extends Phaser.Scene {
 
   constructor() {
@@ -26,7 +25,7 @@ export default class selection extends Phaser.Scene {
 
 
   /***********************************************************************/
-  /** FONCTION PRELOAD 
+  /** FONCTION PRELOAD
   /***********************************************************************/
 
   /** La fonction preload est appelée une et une seule fois,
@@ -36,7 +35,7 @@ export default class selection extends Phaser.Scene {
   preload() {
     // tous les assets du jeu sont placés dans le sous-répertoire src/assets/
     this.load.audio('musiquefont', 'src/assets/son.mp3');
-    
+   
     this.load.image("img_ciel", "src/assets/Cachan_paysage.png");
     this.load.image("img_plateforme", "src/assets/platform.png");
     this.load.spritesheet("img_perso", "src/assets/dude.png", {
@@ -48,12 +47,14 @@ export default class selection extends Phaser.Scene {
       frameWidth: 1,
       frameHeight: 120
     });
-    
+
+    this.load.image("img_etoile", "src/assets/star.png"); 
+
 
   }
 
   /***********************************************************************/
-  /** FONCTION CREATE 
+  /** FONCTION CREATE
   /***********************************************************************/
 
   /* La fonction create est appelée lors du lancement de la scene
@@ -88,14 +89,20 @@ export default class selection extends Phaser.Scene {
     groupe_plateformes.create(600, 584, "img_plateforme");
 
 
-    porte = this.physics.add.staticSprite(40, 520, "img_porte");
-    porte.ouverte = false; 
-    porte.setScale(3);
-    porte.body.setSize(90, 150); // Remplace par les dimensions correctes
-
-
-    
-   
+    porte = this.physics.add.staticSprite(210, 510, "img_porte");
+    porte.ouverte = false;
+    this.anims.create({
+      key: "anim_ouvreporte",
+      frames: this.anims.generateFrameNumbers("img_porte", { start: 0, end: 5 }),
+      frameRate: 50,
+      repeat: 0
+    });
+    this.anims.create({
+      key: "anim_fermeporte",
+      frames: this.anims.generateFrameNumbers("img_porte", { start: 5, end: 0 }),
+      frameRate: 50,
+      repeat: 0
+    });
 
     /****************************
      *  CREATION DU PERSONNAGE  *
@@ -108,6 +115,8 @@ export default class selection extends Phaser.Scene {
     player.setBounce(0.1); // on donne un petit coefficient de rebond
     player.setCollideWorldBounds(true); // le player se cognera contre les bords du monde
 
+
+   
     /***************************
      *  CREATION DES ANIMATIONS *
      ****************************/
@@ -152,7 +161,7 @@ export default class selection extends Phaser.Scene {
   }
 
   /***********************************************************************/
-  /** FONCTION UPDATE 
+  /** FONCTION UPDATE
   /***********************************************************************/
 
   update() {
@@ -177,16 +186,15 @@ export default class selection extends Phaser.Scene {
       if (porte.ouverte == false) {
         porte.anims.play("anim_ouvreporte");
         porte.ouverte = true;
-        
+       
       } else {
         porte.anims.play("anim_fermeporte");
         porte.ouverte = false;
       }
-      this.scene.start("cartePreHistoire");
+      this.scene.start("carteegypte");
+      
     }
 
-    
+   
   }
 }
-
-

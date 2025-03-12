@@ -1,6 +1,17 @@
 import aceuille from "/src/js/aceuille.js"; 
 import selection from "/src/js/selection.js";
+
 import cartePreHistoire from "/src/js/cartePreHistoire.js";
+import carteegypte from "/src/js/carteegypte.js";
+import cartepyramide from "/src/js/cartepyramide.js";
+
+import carteespace from "/src/js/carteespace.js";
+
+
+
+import cartefinal from "/src/js/cartefinal.js";
+
+
 
 
 
@@ -24,7 +35,9 @@ var config = {
       debug:true // permet de voir les hitbox et les vecteurs d'acceleration quand mis à true
     }
   },
-  scene: [aceuille ,selection , cartePreHistoire] 
+
+
+  scene: [aceuille ,selection , cartePreHistoire ,carteegypte ,cartepyramide,carteespace,cartefinal] 
 };
 
 // création et lancement du jeu
