@@ -185,7 +185,7 @@ export default class selection extends Phaser.Scene {
         porte.anims.play("anim_fermeporte");
         porte.ouverte = false;
       }
-      this.scene.start("carteprehistoire");
+      this.scene.start("cartePreHistoire");
     }
 
     
