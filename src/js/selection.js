@@ -5,6 +5,8 @@ var player; // désigne le sprite du joueur
 var groupe_plateformes; // contient toutes les plateformes
 var clavier; // pour la gestion du clavier
 var porte;
+var porte1;
+
 var backmuse;
 
 
@@ -42,10 +44,11 @@ export default class selection extends Phaser.Scene {
       frameHeight: 48
     });
 
-    this.load.spritesheet("img_porte", "src/assets/spritesheet_porte.png", {
-      frameWidth: 96,
+    this.load.spritesheet("img_porte", "src/assets/M01.png", {
+      frameWidth: 1,
       frameHeight: 120
     });
+    
 
   }
 
@@ -85,20 +88,14 @@ export default class selection extends Phaser.Scene {
     groupe_plateformes.create(600, 584, "img_plateforme");
 
 
-    porte = this.physics.add.staticSprite(210, 510, "img_porte");
+    porte = this.physics.add.staticSprite(40, 520, "img_porte");
     porte.ouverte = false; 
-    this.anims.create({
-      key: "anim_ouvreporte",
-      frames: this.anims.generateFrameNumbers("img_porte", { start: 0, end: 5 }),
-      frameRate: 50,
-      repeat: 0
-    });
-    this.anims.create({
-      key: "anim_fermeporte",
-      frames: this.anims.generateFrameNumbers("img_porte", { start: 5, end: 0 }),
-      frameRate: 50,
-      repeat: 0
-    });
+    porte.setScale(3);
+    porte.body.setSize(90, 150); // Remplace par les dimensions correctes
+
+
+    
+   
 
     /****************************
      *  CREATION DU PERSONNAGE  *

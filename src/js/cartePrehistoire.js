@@ -17,7 +17,10 @@ export default class cartePreHistoire extends Phaser.Scene {
       this.load.image("phaser_prehistoire", "src/assets/Example_1.png");
       this.load.image("phaser_prehistoire2", "src/assets/Example_2.png");
       this.load.tilemapTiledJSON("prehistoire", "src/assets/Préhistoire.json");
-    
+      this.load.spritesheet("img_porte1", "src/assets/L104.png", {
+        frameWidth: 1,
+        frameHeight: 120
+      });
 
     }
   
@@ -44,7 +47,7 @@ export default class cartePreHistoire extends Phaser.Scene {
   
       calque_plateformes.setCollisionByProperty({ estSolide2: true });
   
-      this.player = this.physics.add.sprite(768, 50, "img_perso");
+      this.player = this.physics.add.sprite(50, 50, "img_perso");
       this.player.setBounce(0.1);3..
       this.player.setCollideWorldBounds(true);
       this.player.body.onWorldBounds = true;
@@ -69,6 +72,10 @@ export default class cartePreHistoire extends Phaser.Scene {
   
   
   
+      porte1 = this.physics.add.staticSprite(200, 520, "img_porte1");
+      porte1.ouverte = false; 
+      porte1.setScale(3);
+      porte1.body.setSize(90, 150); // Remplace par les dimensions correctes
   
   
       this.clavier = this.input.keyboard.createCursorKeys();
@@ -123,8 +130,8 @@ export default class cartePreHistoire extends Phaser.Scene {
       }
   
      
+
       
-  
     }
   
   };
