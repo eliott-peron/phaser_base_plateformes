@@ -4,8 +4,9 @@ export default class MenuScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("menu_background", "src/assets/imagebase.png");
-        this.load.image("play_button", "src/assets/play.png");
+        this.load.image("menu_background", "src/assets/imageaccueil.png");
+        this.load.image("play_button", "src/assets/boutonplay.png");
+        this.load.image("regles_button", "src/assets/boutonregles (1).png");
     }
 
     create() {
@@ -17,27 +18,35 @@ export default class MenuScene extends Phaser.Scene {
         bg.setScale(scale).setScrollFactor(0);
 
         // Ajout d'un titre
-        this.add.text(this.cameras.main.width / 2, 100, "Ecole temporelle", {
-            font: "48px MedievalSharp",
-            fill: "#ffffff",
-            stroke: "#000000",
-            strokeThickness: 6
-        }).setOrigin(0.5);
+       
 
         // Ajout du bouton Play avec animation
-        let playButton = this.add.image(this.cameras.main.width / 2, 400, "play_button").setInteractive();
-        playButton.setScale(1.2);
+        let playButton = this.add.image(this.cameras.main.width / 2, 480, "play_button").setInteractive();
+        playButton.setScale(0.8);
 
         playButton.on("pointerover", () => {
-            playButton.setScale(1.4);
+            playButton.setScale(1);
         });
 
         playButton.on("pointerout", () => {
-            playButton.setScale(1.2);
+            playButton.setScale(0.8);
         });
 
         playButton.on("pointerdown", () => {
             this.scene.start("selection");
         });
+
+        let reglesButton = this.add.image(this.cameras.main.width / 3.5, 483, "regles_button").setInteractive();
+        reglesButton.setScale(0.3);
+
+        reglesButton.on("pointerover", () => {
+            reglesButton.setScale(0.4);
+        });
+
+        reglesButton.on("pointerout", () => {
+            reglesButton.setScale(0.3);
+        });
+
+       
     }
 }
